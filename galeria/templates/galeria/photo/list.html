@@ -1,0 +1,38 @@
+{% extends "galeria/base.html" %}
+{% load static %}
+
+
+{% block title %}
+  {% if album %}{{ album.name }}{% else %}Wszystkie Albumy - block title{% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+<div id = "sidebar">
+  <h3>Albumy</h3>
+  <ul>
+    <li> {% if not album %}class="selected"{% endif %}>
+      <a href="{%  url "galeria:photo_list" %}">Wszystkie</a>
+    </li>
+
+    {% for a in albums %}
+     <li {% if album.slug == a.slug %}class='selected'{% endif %}>
+       <a href="{{ A.get_absolute_url }}">{{ a.name }}</a>
+     </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+<div class="photo-list"
+ <h1>{% if album %}{{ album.name }}{% else %}Zdjęcia{% endif %}</h1>
+ {% for photo in photos %}
+  <div class="photo">
+    <a href="{{ photo.get_absolute_url }}"><img src="{% if photo.image %}{{ photo.image.url }}{% endif %}">
+    </a>
+  </div>
+ {% endfor %}
+</div>
+
+{% endblock %}
