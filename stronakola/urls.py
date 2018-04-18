@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('galeria.urls', namespace='galeria')),
+    url(r'^posty/', include('posty.urls', namespace='posty', app_name="posty")),
 ]
 
 if settings.DEBUG:
